@@ -1,12 +1,107 @@
 #include <iostream>
 using namespace std;
+
+template <typename T>
+class Node
+{
+public:
+	T data;
+	Node* next;
+	Node(T val) {
+		data = val;
+	}
+
+};
+
+
+//////////////////////////////////////////////////////////////////////
+
+
+template <typename T>
+class LinkedList {
+private:
+	Node<T>* head;
+public:
+	LinkedList();
+	void insert(T data);
+	void del();
+	bool isEmpty();
+	int size();
+	void display();
+};
+
+template <typename T>
+void LinkedList<T>::display() {
+	if (!head) {
+		cout << "Empty stack" << endl;
+		return;
+	}
+	Node<T>* curr = head;
+	while (curr) {
+		cout << curr->data << " ";
+		curr = curr->next;
+	}
+	cout << endl;
+}
+template <typename T>
+int LinkedList<T> ::size() {
+	if (!head) {
+		return 0;
+	}
+	Node<T>* curr = head;
+	int count = 0;
+	while (curr) {
+		count++;
+		curr = curr->next;
+	}
+	return count;
+}
+
+template <typename T>
+bool LinkedList<T>::isEmpty() {
+	return bool(!head);
+}
+template <typename T>
+LinkedList<T> ::LinkedList() {
+	head = NULL;
+}
+template <typename T>
+void LinkedList<T>::insert(T data) {
+	if (!head) {
+		head = new Node<T>(data);
+		return;
+	}
+	Node<T>* curr = head;
+	while (curr->next) curr = curr->next;
+	curr->next = new Node<T>(data);
+}
+
+template <typename T>
+void LinkedList<T>::del() {
+	if (!head) {
+		cout << "Empty stack" << endl;
+		return;
+	}
+	if (!(head->next)) {
+		head = NULL;
+		return;
+	}
+	Node<T>* curr = head;
+	while (curr->next->next) curr = curr->next;
+	Node<T>* deletedNode = curr->next;
+	delete deletedNode;
+	curr->next = NULL;
+}
+
+////////////////////////////////////////////////////////////////
+
 template <typename T>
 class Stack
 {
 private:
-	T* stack, * top;
+	LinkedList<T> stack;
 public:
-	Stack(int size);
+	Stack();
 	~Stack();
 	bool isEmpty();
 	void push(T data);
@@ -17,9 +112,8 @@ public:
 
 
 template <typename T>
-Stack<T>::Stack(int size) {
-	stack = new T[size];
-	top = NULL;
+Stack<T>::Stack() {
+	LinkedList<T> stack;
 }
 
 template <typename T>
@@ -29,56 +123,41 @@ Stack<T>::~Stack()
 
 template <typename T>
 void Stack<T> ::push(T data) {
-	if (top == NULL) {
-		top = stack;
-	}
-	if (top == *(&stack + 1)) {
-		cout << "Stack overflow" << endl;
-		return;
-	}
-	*(top++) = data;
+	stack.insert(data);
 }
+
 template <typename T>
 void Stack<T> ::pop() {
-	if (top == NULL) {
-		cout << "Stack underflow" << endl;
-		return;
-	}
-	if (top == stack) {
-		top = NULL;
-		return;
-	}
-	top--;
+	stack.del();
 }
 
 template <typename T>
 bool Stack<T> ::isEmpty() {
-	return bool(top == NULL);
+	return stack.isEmpty();
 }
 
 template <typename T>
 int Stack<T> ::size() {
-	if (top == NULL) return 0;
-	return (top - stack);
+	return stack.size();
 }
 
 template <typename T>
 void Stack<T> ::display() {
-	T* ptr = stack;
-	if (top == NULL) {
-		cout << "Empty Stack\n";
-		return;
-	}
-	while (ptr != top) {
-		cout << *(ptr++) << " ";
-	}
-	cout << endl;
+	stack.display();
 }
+
 int main()
 {
-	Stack<int> st(10);
-	cout << st.size() << endl;
-	st.push(0);
-	cout << st.size() << endl;
-	st.display();
+	Stack<int> st;
+	cout << st.isEmpty() << endl;
+	for (int i = 0; i < 10 ; i++)
+	{
+		st.push(i);
+		st.display();
+	}
+	for (int i = 9; i >= 0; i--)
+	{
+		st.pop();
+		st.display();
+	}
 }
