@@ -158,6 +158,7 @@
   <ItemGroup>
     <ClInclude Include="helloWorld.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="SinglyLinkedCircular.h" />
     <ClInclude Include="SinglyLinkedLinear.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
