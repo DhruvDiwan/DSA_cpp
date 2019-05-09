@@ -91,6 +91,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>D:\Programming\DSA_cpp\LinkedLists\LinkedLists</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -151,7 +152,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="helloWorld.cpp" />
     <ClCompile Include="LinkedLists.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="helloWorld.h" />
+    <ClInclude Include="Node.h" />
+    <ClInclude Include="SinglyLinkedLinear.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
