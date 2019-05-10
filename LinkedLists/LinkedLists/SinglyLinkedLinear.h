@@ -16,15 +16,24 @@ public:
 	void deleteHead();
 	void deleteRear();
 	void del(T data);
+	bool isEmpty();
+	T getHead();
 };
 
+template <typename T>
+T SinglyLinkedLinear<T> ::getHead() {
+	return head->data;
+}
 template <typename T>
 SinglyLinkedLinear<T>::SinglyLinkedLinear()
 {
 	head = NULL;
 	tail = NULL;
 }
-
+template <typename T>
+bool SinglyLinkedLinear<T> ::isEmpty() {
+	return bool(!head);
+}
 template <typename T>
 void SinglyLinkedLinear<T>::insertHead(T data) {
 	if (!head) {
