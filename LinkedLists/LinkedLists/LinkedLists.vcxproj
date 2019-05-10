@@ -156,6 +156,7 @@
     <ClCompile Include="LinkedLists.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DoublyLinkedLinear.h" />
     <ClInclude Include="helloWorld.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="SinglyLinkedCircular.h" />
