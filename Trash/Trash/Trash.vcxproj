@@ -20,9 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{F2370A79-C55F-404A-B3B0-A6230A462C48}</ProjectGuid>
+    <ProjectGuid>{60F446D5-84C2-4369-AEED-6E2270CC1617}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Trees</RootNamespace>
+    <RootNamespace>Trash</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -91,7 +91,6 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\Programming\DSA_cpp\LinkedLists\LinkedLists;D:\Programming\DSA_cpp\Trees\Trees</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -152,10 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Trees.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="genericTrees.h" />
+    <ClCompile Include="Trash.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,16 +1,16 @@
 #pragma once
 #include<SinglyLinkedLinear.h>
 template<typename T>
-class Node {
+class tNode {
 public:
 	T data;
-	Node<T>* leftChild; *parent, * rightSibling;
-	Node() {
+	tNode<T>* leftChild, *parent, * rightSibling;
+	tNode() {
 		leftChild = NULL;
 		parent = NULL;
 		rightSibling = NULL;
 	}
-	Node(T val) {
+	tNode(T val) {
 		data = val;
 		leftChild = NULL;
 		parent = NULL;
@@ -24,27 +24,38 @@ class tree
 {
 public:
 	tree();
+	T lastAdded();
 	int Size();
 	SinglyLinkedLinear<T> Elements();
 	void displayElements();
 	bool isIn(T data);
 	bool isRoot(T data);
-	bool isInternal(T data);
+	void insert(T data);
 	void insert(T parent, T data);
 	void del(T data);
+	bool isInternal(T data);
 
 private:
 	int size;
 	SinglyLinkedLinear<T> elements;
-	Node<T>* root;
+	tNode<T>* root, * last;
 };
 
 template<typename T>
 tree<T>::tree()
 {
-	SinglyLinkedLinear elements;
+	SinglyLinkedLinear<T> elements;
 	size = 0;
-	Node<T>* root = new Node<T>;
+	root = NULL;
+	last = NULL;
+}
+
+template<typename T>
+T tree<T>::lastAdded() {
+	if (!size) {
+		throw invalid_argument("No element added");
+	}
+	return last->data;
 }
 
 template<typename T>
@@ -73,16 +84,31 @@ bool tree<T>::isRoot(T data) {
 	return bool(root->data == data);
 }
 
+
 template<typename T>
-bool tree<T>::isInternal(T data) {
-	if (!isIn(data)) return false;
-	return bool(!(root->data == data));
+void tree<T>::insert(T data) {
+	size++;
+	elements.insertRear(data);
+	if (!root) {
+		root = new tNode<T>(data);
+		last = root;
+		return;
+	}
+	if (last == root) {
+		root->leftChild = new tNode<T>(data);
+		root->leftChild->parent = root;
+		last = root->leftChild;
+		return;
+	}
+	last->rightSibling = new tNode<T>(data);
+	last->rightSibling->parent = last->parent;
+	last = last->rightSibling;
 }
 
 template<typename T>
 void tree<T>::insert(T parent, T data) {
 	if (!isIn(parent)) {
-		cout << "'" << parent << "' Not found" << endl;
+		cout << "'" << parent << "' Not found\nUse insert(data) function to add randomly" << endl;
 		return;
 	}
 
