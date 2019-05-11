@@ -32,7 +32,7 @@ public:
 	bool isRoot(T data);
 	void insert(T data);
 	T getRoot();
-	bool test(T data); // tests search
+	bool test(T data); // tests the search function
 	tNode<T>* search(tNode<T>* ptr, T data);
 	T getParent(T data);
 	tNode<T>* getChildrenPtr(T data);
@@ -124,6 +124,7 @@ bool tree<T> ::test(T data) {
 	bool present = isIn(data);
 	tNode<T>* add = search(root, data);
 	bool found = bool(add);
+	//if (found) cout << "data is " << add->data << endl;
 	if ((!present && !found) || (present && found && add->data == data)) return true;
 	return false;
 }
@@ -134,9 +135,31 @@ void tree<T>::insert(T parent, T data) {
 		return;
 	}
 	size++;
-	elements.insertRear(parent);
-	tNode<T>* curr = root;
+	elements.insertRear(data);
+	tNode<T>* ptr = search(root, parent);
+	//if (!ptr) {
+	//	cout << "Could not locate data , check the code"; // precautionary statement
+	//	return;
+	//}
+	if (!ptr->leftChild) {
+		ptr->leftChild = new tNode<T>(data);
+		ptr->leftChild->parent = ptr;
+		last = ptr;
+		return;
+	}
+	ptr = ptr->leftChild;
+	while (ptr->rightSibling) ptr = ptr->rightSibling;
+	ptr->rightSibling = new tNode<T>(data);
+	ptr->rightSibling->parent = ptr->parent;
+	last = ptr;
+}
 
+template<typename T>
+bool tree<T>::isInternal(T data)
+{
+	tNode<T>* ptr = search(root, data);
+	if (ptr->leftChild) return true;
+	return false;
 }
 
 template<typename T>
@@ -151,3 +174,40 @@ tNode<T>* tree<T>::search(tNode<T>* ptr, T data) {
 	}
 	return NULL;
 }
+
+template<typename T>
+T tree<T>::getParent(T data) {
+	tNode<T>* address = search(root, data);
+	if (!address) {
+		throw invalid_argument("Data not present");
+	}
+	if (address == root) {
+		throw invalid_argument("Root does not have a parent");
+	}
+	return address->parent->data;
+}
+
+template<typename T>
+tNode<T>* tree<T>::getChildrenPtr(T data)
+{
+	tNode<T>* ptr = search(root, data);
+	if (!ptr) {
+		throw invalid_argument("Data not present");
+	}
+	if (!ptr->leftChild) {
+		throw invalid_argument("Children not present");
+	}
+	return ptr->leftChild;
+}
+
+template<typename T>
+void tree<T>::printChildren(T data)
+{
+	tNode<T>* ptr = getChildrenPtr(data);
+	while (ptr) {
+		cout << ptr->data << " ";
+		ptr = ptr->rightSibling;
+	}
+	cout << endl;
+}
+
