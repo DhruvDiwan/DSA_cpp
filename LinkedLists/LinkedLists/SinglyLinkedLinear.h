@@ -17,8 +17,19 @@ public:
 	void deleteRear();
 	void del(T data);
 	bool isEmpty();
+	bool isIn(T data);
 	T getHead();
 };
+
+template <typename T>
+bool SinglyLinkedLinear<T> ::isIn(T data) {
+	Node<T>* curr = head;
+	while (curr) {
+		if (curr->data == data) return true;
+		curr = curr->next;
+	}
+	return false;
+}
 
 template <typename T>
 T SinglyLinkedLinear<T> ::getHead() {

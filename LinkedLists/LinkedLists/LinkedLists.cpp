@@ -7,8 +7,11 @@ using namespace std;
 int main() {
 // Testing singly linked linear
 	//SinglyLinkedLinear<int> ll;
+	//cout << ll.isIn(20) << endl;
 	//ll.display();
 	//ll.insertHead(1);
+	//cout << ll.isIn(1) << endl;
+	//cout << ll.isIn(2) << endl;
 	//ll.display();
 	//ll.insertRear(2);
 	//ll.display();
