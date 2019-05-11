@@ -10,6 +10,12 @@ public:
 		parent = NULL;
 		rightSibling = NULL;
 	}
+	Node(T val) {
+		data = val;
+		leftChild = NULL;
+		parent = NULL;
+		rightSibling = NULL;
+	}
 };
 
 
@@ -25,7 +31,7 @@ public:
 	bool isRoot(T data);
 	bool isInternal(T data);
 	void insert(T parent, T data);
-	void delete(T data);
+	void del(T data);
 
 private:
 	int size;
@@ -59,4 +65,25 @@ void tree<T>::displayElements() {
 template<typename T>
 bool tree<T>::isIn(T data) {
 	return elements.isIn(data);
+}
+
+template<typename T>
+bool tree<T>::isRoot(T data) {
+	if (!isIn(data)) return false;
+	return bool(root->data == data);
+}
+
+template<typename T>
+bool tree<T>::isInternal(T data) {
+	if (!isIn(data)) return false;
+	return bool(!(root->data == data));
+}
+
+template<typename T>
+void tree<T>::insert(T parent, T data) {
+	if (!isIn(parent)) {
+		cout << "'" << parent << "' Not found" << endl;
+		return;
+	}
+
 }

@@ -19,7 +19,13 @@ public:
 	bool isEmpty();
 	bool isIn(T data);
 	T getHead();
+	Node<T>* getHeadPtr();
 };
+
+template<typename T>
+Node<T>* SinglyLinkedLinear<T> ::getHeadPtr() {
+	return head;
+}
 
 template <typename T>
 bool SinglyLinkedLinear<T> ::isIn(T data) {
