@@ -31,6 +31,12 @@ public:
 	bool isIn(T data);
 	bool isRoot(T data);
 	void insert(T data);
+	T getRoot();
+	bool test(T data); // tests search
+	tNode<T>* search(tNode<T>* ptr, T data);
+	T getParent(T data);
+	tNode<T>* getChildrenPtr(T data);
+	void printChildren(T data);
 	void insert(T parent, T data);
 	void del(T data);
 	bool isInternal(T data);
@@ -105,11 +111,43 @@ void tree<T>::insert(T data) {
 	last = last->rightSibling;
 }
 
+template <typename T>
+T tree<T> ::getRoot() {
+	if (!root) {
+		throw invalid_argument("Empty tree");
+	}
+	return root->data;
+}
+
+template <typename T>
+bool tree<T> ::test(T data) {
+	bool present = isIn(data);
+	tNode<T>* add = search(root, data);
+	bool found = bool(add);
+	if ((!present && !found) || (present && found && add->data == data)) return true;
+	return false;
+}
 template<typename T>
 void tree<T>::insert(T parent, T data) {
 	if (!isIn(parent)) {
 		cout << "'" << parent << "' Not found\nUse insert(data) function to add randomly" << endl;
 		return;
 	}
+	size++;
+	elements.insertRear(parent);
+	tNode<T>* curr = root;
 
+}
+
+template<typename T>
+tNode<T>* tree<T>::search(tNode<T>* ptr, T data) {
+	if (!ptr) return NULL;
+	if (ptr->data == data) return ptr;
+	tNode<T>* curr = ptr->leftChild;
+	while (curr) {
+		tNode<T>* result = search(curr, data);
+		if (result) return result;
+		curr = curr->rightSibling;
+	}
+	return NULL;
 }
