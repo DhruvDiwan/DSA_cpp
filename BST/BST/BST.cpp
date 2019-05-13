@@ -16,4 +16,9 @@ int main()
 	tree.inOrder();
 	tree.preOrder();
 	tree.postOrder();
+	cout << tree.search(10) << endl;
+	cout << tree.search(4) << endl;
+	cout << tree.search(17) << endl;
+	cout << tree.search(99) << endl;
+
 }

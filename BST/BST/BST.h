@@ -46,7 +46,7 @@ public:
 	void pre(tNode<T>* ptr);
 	void postOrder();
 	void post(tNode<T>* ptr);
-	tNode<T>* search(T data);
+	bool search(T data);
 	T getMinimum();
 	T getMaximum();
 	T getSuccessor();
@@ -195,4 +195,14 @@ void bst<T>::post(tNode<T>* ptr)
 	cout << ptr->data << " ";
 }
 
-
+template<typename T>
+bool bst<T>::search(T data)
+{
+	if (!root) return NULL;
+	tNode<T>* curr = root;
+	while (curr && curr->data != data) {
+		if (curr->data > data) curr = curr->lf;
+		else curr = curr->rt;
+	}
+	return bool(curr);
+}
