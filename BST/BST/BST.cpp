@@ -31,12 +31,14 @@ int main()
 	tree.display();
 	tree.del(17);
 	tree.display();
-	//tree.del(10);
-	//tree.display();
-	//tree.del(5);
-	//tree.display();
-	//tree.del(1);
-	//tree.display();
-	//tree.del(4);
-	//tree.display();
+	tree.del(10);
+	tree.display();
+	tree.del(5);
+	tree.display();
+	tree.del(1);
+	tree.display();
+	tree.del(4);
+	tree.display();
+	tree.del(16);
+	tree.display();
 }

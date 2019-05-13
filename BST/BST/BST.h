@@ -51,6 +51,7 @@ public:
 	T getSuccessor(T data);
 	T getPredecessor(T data);
 	void del(T data);
+	tNode<T>* find(tNode<T>* start, T data);
 
 private:
 	tNode<T>* root;
@@ -95,13 +96,11 @@ void bst<T>::insert(T data)
 		prev->lf = new tNode<T>(data);
 		prev->lf->p = prev;
 		prev->lf->isLeft = true;
-		prev = prev->lf;
 	}
 	else {
 		prev->rt = new tNode<T>(data);
 		prev->rt->p = prev;
 		prev->rt->isLeft = false;
-		prev = prev->rt;
 	}
 }
 
@@ -271,11 +270,13 @@ template<typename T>
 void bst<T>::del(T data)
 {
 	if (!root) throw bad_exception();
-	tNode<T>* ptr = searchPtr(data);
-	//if (!ptr) {
-	//	cout << "Data not found" << endl;
-	//}
+	tNode<T>* ptr = find(root, data);
+	if (!ptr) {
+		cout << "data not found" << endl;
+		return;
+	}
 	size--;
+
 	// no child
 	if(!ptr->lf && !ptr->rt) {
 		if (ptr->isLeft) {
@@ -292,10 +293,15 @@ void bst<T>::del(T data)
 				root = NULL;
 			}
 			else {
+				//cout << ptr->data << "  " << ptr->p->data << "fdbsdfbdfdnertgnw\n";
 				ptr->p->rt = NULL;
 			}
+
 			delete(ptr);
 		}
+		//cout << "Done boss" << endl;
+		//cout << root->data << endl;
+		//cout << bool(root->rt) << endl;
 		return;
 	}
 	// 2 children
@@ -306,6 +312,7 @@ void bst<T>::del(T data)
 		int copyData = ptr->data;
 		ptr->data = curr->data;
 		curr->data = copyData;
+		//cout << curr->p->data << endl;
 		//display();
 		del(copyData);
 		return;
@@ -327,6 +334,7 @@ void bst<T>::del(T data)
 			ptr->p->rt = ptr->lf;
 			ptr->lf->isLeft = false;
 		}
+		ptr->lf->p = ptr->p;
 	}
 	// only right child
 	else {
@@ -344,6 +352,18 @@ void bst<T>::del(T data)
 			ptr->p->rt = ptr->rt;
 			ptr->rt->isLeft = false;
 		}
+		ptr->rt->p = ptr->p;
 	}
 	delete copy;
+}
+
+template<typename T>
+tNode<T>* bst<T>::find(tNode<T>* start, T data)
+{
+	if (!start) return NULL;
+	if (start->data == data) return start;
+	tNode<T>* result1 = find(start->lf, data);
+	if (result1) return result1;
+	tNode<T>* result2 = find(start->rt, data);
+	return result2;
 }
