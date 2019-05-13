@@ -13,5 +13,7 @@ int main()
 	tree.insert(16);
 	tree.insert(21);
 	tree.display();
-
+	tree.inOrder();
+	tree.preOrder();
+	tree.postOrder();
 }
