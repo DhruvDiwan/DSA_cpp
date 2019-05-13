@@ -5,6 +5,7 @@ int main()
 {
 	bst<int> tree;
 	tree.display();
+	tree.display();
 	tree.insert(10);
 	tree.insert(4);
 	tree.insert(17);
