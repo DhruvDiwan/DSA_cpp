@@ -38,7 +38,7 @@ public:
 	tNode<T>* getChildrenPtr(T data);
 	void printChildren(T data);
 	void insert(T parent, T data);
-	bool isInternal(T data);
+  	bool isInternal(T data);
 
 private:
 	int size;
