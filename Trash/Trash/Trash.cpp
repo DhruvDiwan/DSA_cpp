@@ -24,12 +24,13 @@ public:
 
 int main()
 {
-    std::cout << "Hello World!\n";
-	Node<int> node(2);
-	cout << node.data << endl;
-
-	Node<int>* no = new Node<int>(2);
-	cout << no->data << endl;
+	Node<int>* node = new Node<int>;
+	node->data = 12;
+	Node<int>* node_ = new Node<int>;
+	node_ = node;
+	cout << "Before deleting node : " << node_->data << endl;
+	delete(node);
+	cout << "After deleting node : " << node_->data;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
