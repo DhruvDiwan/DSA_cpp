@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{00265589-5D9E-4A2C-8DAA-40AE6845E5EB}</ProjectGuid>
+    <ProjectGuid>{804CF25E-A969-4BD3-A962-B8C36C60590C}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>redblacktree</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>

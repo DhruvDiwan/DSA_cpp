@@ -16,7 +16,7 @@ void test(string testName)
 	while (getline(cin, line))
 	{
 		istringstream iss(line);
-		string cmd;
+		string cmd; // command
 		int a;
 		if (!(iss >> cmd >> a)) { break; } // error
 		if (cmd == "insert") tr.insert(a);

@@ -1,0 +1,13 @@
+45-b
+93 doesn't exist in tree
+45-b
+45-b(x,49-r)
+49-b(45-r,102-r)
+49-b(45-b,102-b(52-r,x))
+23 doesn't exist in tree
+49-b(45-b,102-b(52-r,x))
+52-b(45-b,102-b)
+102 already exists in tree 
+52-b(45-b,102-b)
+52-b(45-r,x)
+45-b

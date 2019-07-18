@@ -28,9 +28,12 @@ int main()
 	node->data = 12;
 	Node<int>* node_ = new Node<int>;
 	node_ = node;
-	cout << "Before deleting node : " << node_->data << endl;
-	delete(node);
-	cout << "After deleting node : " << node_->data;
+	cout << "Before nullifying node : " << node_->data << endl;
+	//delete(node);
+	node = NULL;
+	cout << "After nullifying node : " << node_->data << endl;
+	//string s = "Dhruv" + " Diwan"; // not allowed
+	//cout << s;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
