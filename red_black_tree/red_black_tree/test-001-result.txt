@@ -1,13 +1,19 @@
+Insert 45 : 45-b
+
+Delete 93 : Element doesn't exist
 45-b
-93 doesn't exist in tree
-45-b
-45-b(x,49-r)
-49-b(45-r,102-r)
+
+Insert 49 : 45-b(x,49-r)
+Insert 102 : 49-b(45-r,102-r)
+Insert 52 : 49-b(45-b,102-b(52-r,x))
+
+Delete 23 : Element doesn't exist
 49-b(45-b,102-b(52-r,x))
-23 doesn't exist in tree
-49-b(45-b,102-b(52-r,x))
+
+Delete 49 : 52-b(45-b,102-b)
+
+Insert 102 : Element already exists
 52-b(45-b,102-b)
-102 already exists in tree 
-52-b(45-b,102-b)
-52-b(45-r,x)
-45-b
+
+Delete 102 : 52-b(45-r,x)
+Delete 52 : 45-b

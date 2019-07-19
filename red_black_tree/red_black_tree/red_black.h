@@ -3,6 +3,51 @@
 #include <string>
 using namespace std;
 
+class InsertionError
+{
+public:
+	InsertionError();
+	~InsertionError();
+	const char* what();
+private:
+};
+
+InsertionError::InsertionError()
+{
+}
+
+InsertionError::~InsertionError()
+{
+}
+
+inline const char* InsertionError::what()
+{
+	return "Element already exists";
+}
+
+class DeletionError
+{
+public:
+	DeletionError();
+	~DeletionError();
+	const char* what();
+private:
+
+};
+
+DeletionError::DeletionError()
+{
+}
+
+DeletionError::~DeletionError()
+{
+}
+
+inline const char* DeletionError::what()
+{
+	return "Element doesn't exist";
+}
+
 template<typename T>
 class Node
 {
@@ -94,8 +139,8 @@ inline void RBT<T>::insert(T data)
 	Node<T>* prev = NULL;
 	while (curr) {
 		if (curr->data == data) {
-			cout << data << " already exists in tree " << endl;
-			return;
+			 InsertionError e;
+			 throw e;
 		}
 		prev = curr;
 		if (curr->data > data) curr = curr->lf;
@@ -121,8 +166,8 @@ inline void RBT<T>::del(T data)
 {
 	Node<T>* ptr = find_ptr(data);
 	if (!ptr) {
-		cout << data << " doesn't exist in tree\n";
-		return;
+		DeletionError e;
+		throw e;
 	}
 	nodes--;
 	delNode(ptr);

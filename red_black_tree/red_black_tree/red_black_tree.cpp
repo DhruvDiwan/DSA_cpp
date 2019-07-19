@@ -4,7 +4,6 @@
 #include <fstream>
 #include <vector>
 #include <algorithm>
-#include <ctime> 
 #include <cstdlib>
 
 int randomize()
@@ -55,9 +54,32 @@ void cmd_pt() {
 		string cmd; // command
 		int a;
 		if (!(iss >> cmd >> a)) { break; } // error
-		if (cmd == "insert") rb.insert(a);
-		if (cmd == "delete") rb.del(a);
-		rb.display();
+		if (cmd == "insert") {
+			try
+			{
+				rb.insert(a);
+				cout << "Insert " << a << " : "; rb.display();
+			}
+			catch (InsertionError e)
+			{
+				cout << endl << "Insert " << a << " : " << e.what() << endl;
+				rb.display();
+				cout << endl;
+			}
+		}
+		else if (cmd == "delete") {
+			try
+			{
+				rb.del(a);
+				cout << "Delete " << a << " : "; rb.display();
+			}
+			catch (DeletionError e)
+			{
+				cout << endl << "Delete " << a << " : " << e.what() << endl;
+				rb.display();
+				cout << endl;
+			}
+		}
 	}
 }
 
@@ -94,5 +116,6 @@ int main() {
 	//run_tests(2, 15);
 	//file_IO("in_1.txt", "out_1.txt");
 	pair_file_IO("test-001");
+	//cmd_pt();
 	return 0;
 }
