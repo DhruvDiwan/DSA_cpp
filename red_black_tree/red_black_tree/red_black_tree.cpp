@@ -80,6 +80,9 @@ void cmd_pt() {
 				cout << endl;
 			}
 		}
+		else {
+			cout << "Allowed format of input :\nInsert / Delete data\n\n";
+		}
 	}
 }
 
@@ -115,7 +118,7 @@ void pair_file_IO(string testName) {
 int main() {
 	//run_tests(2, 15);
 	//file_IO("in_1.txt", "out_1.txt");
-	pair_file_IO("test-001");
-	//cmd_pt();
+	//pair_file_IO("test-001");
+	cmd_pt();
 	return 0;
 }

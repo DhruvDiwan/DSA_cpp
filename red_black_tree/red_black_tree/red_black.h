@@ -77,6 +77,8 @@ public:
 	void display();
 	void insert(T data);
 	void del(T data);
+	char get_pointer_colour(Node<T>* ptr);
+	Node<T>* get_pointer(T data);
 
 private:
 	int nodes; // nodes : number of nodes in the tree
@@ -114,7 +116,7 @@ template<typename T>
 inline int RBT<T>::root_data()
 {
 	if (root) return root->data;
-	return -1235467890;
+	return -1234567890;
 }
 
 template<typename T>
@@ -171,6 +173,21 @@ inline void RBT<T>::del(T data)
 	}
 	nodes--;
 	delNode(ptr);
+}
+
+template<typename T>
+inline char RBT<T>::get_pointer_colour(Node<T>* ptr)
+{
+	if (!ptr) return 0;
+	else return ptr->c;
+}
+
+template<typename T>
+inline Node<T>* RBT<T>::get_pointer(T data)
+{
+	Node<T>* ptr = find_ptr(data);
+	if (ptr) return ptr;
+	return NULL;
 }
 
 
