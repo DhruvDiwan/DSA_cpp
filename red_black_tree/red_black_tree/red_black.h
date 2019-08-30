@@ -79,6 +79,7 @@ public:
 	void del(T data);
 	char get_pointer_colour(Node<T>* ptr);
 	Node<T>* get_pointer(T data);
+	Node<T>* get_root_ptr();
 
 private:
 	int nodes; // nodes : number of nodes in the tree
@@ -188,6 +189,12 @@ inline Node<T>* RBT<T>::get_pointer(T data)
 	Node<T>* ptr = find_ptr(data);
 	if (ptr) return ptr;
 	return NULL;
+}
+
+template<typename T>
+inline Node<T>* RBT<T>::get_root_ptr()
+{
+	return root;
 }
 
 

@@ -1,5 +1,6 @@
 // red_black_tree.cpp : This file contains the 'main' function. Program execution begins and ends there.
 #include <red_black.h>
+#include<red_black_test.h>
 #include <sstream>
 #include <fstream>
 #include <vector>
@@ -9,6 +10,16 @@
 int randomize()
 {
 	return (rand() % 10000);
+}
+
+Node<int>*  construct_tree() {
+	RBT<int> rb;
+	vector<int> vect(10);
+	generate(vect.begin(), vect.end(), randomize);
+	for (unsigned int i = 0; i < vect.size(); i++) {
+		rb.insert(vect[i]);
+	}
+	return rb.get_root_ptr();
 }
 
 void build_destroy_tree(unsigned int tree_count) {
@@ -115,10 +126,18 @@ void pair_file_IO(string testName) {
 	file_IO(inFileName, outFileName);
 }
 
+
 int main() {
 	//run_tests(2, 15);
 	//file_IO("in_1.txt", "out_1.txt");
 	//pair_file_IO("test-001");
-	cmd_pt();
+	//cmd_pt();
+	for (int i = 0; i < 10; i++) {
+		cout << "Test " << i + 1;
+		Test<int> test(construct_tree());
+		if (test.get_result()) cout << " Passed";
+		else cout << " Failed";
+		cout << endl;
+	}
 	return 0;
 }
